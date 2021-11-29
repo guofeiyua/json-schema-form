@@ -3,7 +3,7 @@ import { createUseStyles } from 'vue-jss'
 
 import MonacoEditor from './components/MonacoEditor'
 
-import demos from './demos'
+import demos from "./demos"
 
 import SchemaForm from '../lib'
 
@@ -91,6 +91,8 @@ export default defineComponent({
 
     watchEffect(() => {
       const index = selectedRef.value
+      console.log(index, 'index+++++++++');
+      
       const d = demos[index]
       demo.schema = d.schema
       demo.data = d.default
@@ -117,7 +119,7 @@ export default defineComponent({
       try {
         const json = JSON.parse(value)
         demo[filed] = json
-        ;(demo as any)[`${filed}Code`] = value
+        (demo as any)[`${filed}Code`] = value
       } catch (err) {
         // some thing
       }
