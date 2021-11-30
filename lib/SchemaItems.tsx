@@ -2,6 +2,7 @@ import { defineComponent, PropType } from "@vue/runtime-core";
 import NumberField from "./fields/NumberField";
 import StringField from "./fields/StringField.vue";
 import ObjectField from './fields/ObjectField'
+import ArrayField from './fields/ArrayField'
 import { Schema, SchemaTypes, FiledPropsDefine } from './types'
 export default defineComponent({
   name: 'SchemaItems',
@@ -20,6 +21,9 @@ export default defineComponent({
           break
         case SchemaTypes.OBJECT:
           Component = ObjectField
+          break
+        case SchemaTypes.ARRAY:
+          Component = ArrayField
           break
         default:
           console.warn(`${type} not supported`)

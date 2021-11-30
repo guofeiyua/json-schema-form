@@ -16,6 +16,22 @@ export default {
         type: "string",
         minLength: 10,
       },
+      staticArray: {
+        type: "array",
+        items: [
+          {
+            type: "string",
+            default: "11",
+          },
+        ],
+      },
+      multiSelectArray: {
+        type: "array",
+        items: {
+          type: "string",
+          enum: ["123", "456", "789"],
+        },
+      },
     },
   },
   uiSchema: {
