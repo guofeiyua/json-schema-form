@@ -5,7 +5,7 @@ export default defineComponent({
   props: FiledPropsDefine,
   setup(props) {
     const handleChange = (e: any) => {
-      props.onchange(e.target.value)
+      props.onChange(e.target.value)
     }
     return () => {
       return <input type='text' value={props.value} onInput={handleChange}></input>

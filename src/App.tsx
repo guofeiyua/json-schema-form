@@ -91,7 +91,6 @@ export default defineComponent({
 
     watchEffect(() => {
       const index = selectedRef.value
-      console.log(index, 'index+++++++++');
       
       const d = demos[index]
       demo.schema = d.schema

@@ -1,7 +1,11 @@
+import { defineComponent, PropType, provide, reactive } from 'vue'
 
-import { defineComponent, PropType } from "vue";
-import SchemaItems from './SchemaItems'
-import { Schema, SchemaTypes } from "./types"
+import { Schema, SchemaTypes } from './types'
+
+import SchemaItem from './SchemaItems'
+import { SchemaFormContextKey } from './context'
+
+type A = typeof SchemaItem
 
 export default defineComponent({
   props: {
@@ -17,15 +21,28 @@ export default defineComponent({
       required: true,
     },
   },
-  name: "SchemaForm",
-  setup(props, ctx) {
-    console.log(props.schema, '-----------------');
+  name: 'SchemaForm',
+  setup(props, { slots, emit, attrs }) {
     const handleChange = (v: any) => {
       props.onChange(v)
     }
+
+    const context: any = {
+      SchemaItem,
+    }
+
+    provide(SchemaFormContextKey, context)
+
     return () => {
-      const {schema,value} = props;
-      return <SchemaItems schema={schema} value={value} onchange={handleChange} />
-    };
+      const { schema, value } = props
+      return (
+        <SchemaItem
+          schema={schema}
+          rootSchema={schema}
+          value={value}
+          onChange={handleChange}
+        />
+      )
+    }
   },
-});
+})
