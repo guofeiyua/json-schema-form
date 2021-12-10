@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build:core": "vue-cli-service build --target lib --name index --no-clean lib/index.ts",
+    "build:theme": "set TYPE=lib && vue-cli-service build --target lib --name theme-default/index --no-clean lib/theme-default/index.tsx",
+    "build": "rimraf dist && npm run build:core && npm run build:theme",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

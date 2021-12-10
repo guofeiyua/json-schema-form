@@ -1,10 +1,10 @@
-import { CommonFieldType } from "./types";
+import { CommonFieldType, Theme } from "./types";
 import { inject } from "vue";
 export const SchemaFormContextKey = Symbol();
 // eslint-disable-next-line
 export function useVJSFContext() {
-  const context: { SchemaItem: CommonFieldType } | undefined =
-    inject(SchemaFormContextKey);
+  const context: { Theme: Theme; SchemaItem: CommonFieldType } | undefined =
+    inject<{ Theme: Theme; SchemaItem: CommonFieldType }>(SchemaFormContextKey);
 
   if (!context) {
     throw Error("SchemaForm needed");

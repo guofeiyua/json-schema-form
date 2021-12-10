@@ -6,6 +6,7 @@ import MonacoEditor from './components/MonacoEditor'
 import demos from "./demos"
 
 import SchemaForm from '../lib'
+import ThemeDefault from '../lib/theme-default'
 
 // TODO: 在lib中export
 type Schema = any
@@ -72,7 +73,7 @@ const useStyles = createUseStyles({
 export default defineComponent({
   setup() {
     const selectedRef: Ref<number> = ref(0)
-
+    
     const demo: {
       schema: Schema | null
       data: any
@@ -132,7 +133,7 @@ export default defineComponent({
       const classes = classesRef.value
       const selected = selectedRef.value
 
-      console.log(methodRef)
+
 
       return (
         // <StyleThemeProvider>
@@ -178,7 +179,7 @@ export default defineComponent({
               </div>
             </div>
             <div class={classes.form}>
-              <SchemaForm schema={demo.schema} onChange={handleChange} value={demo.data} />
+              <SchemaForm theme={ThemeDefault as any} schema={demo.schema} onChange={handleChange} value={demo.data} />
             </div>
           </div>
         </div>
