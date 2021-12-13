@@ -1,23 +1,9 @@
 import { defineComponent, PropType, watch, ref, watchEffect } from "@vue/runtime-core";
+import { SelectWidgetPropsDefine } from "../types";
 
 export default defineComponent({
-  name: "SelectionWidge",
-  props: {
-    value: {},
-    onChange: {
-      type: Function as PropType<(v: any) => void>,
-      required: true,
-    },
-    options: {
-      type: Array as PropType<
-        {
-          key: string
-          value: any
-        }[]
-      >,
-      required: true,
-    },
-  },
+  name: "SelectionWidget",
+  props: SelectWidgetPropsDefine,
   setup(props) {
     const currentValue = ref(props.value)
     watch(currentValue, (newv, oldv) => {
@@ -25,9 +11,7 @@ export default defineComponent({
         props.onChange(newv)
       }
     })
-    watchEffect(() => {
-      console.log(currentValue.value, '--------------------------')
-    })
+
     watch(()=> props.value, (newVal) => {
       currentValue.value  = newVal
     })

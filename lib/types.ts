@@ -77,7 +77,7 @@ export const CommonWidgetPropsDefine = {
     required: true,
   },
 } as const;
-const SelectWidgetPropsDefine = {
+export const SelectWidgetPropsDefine = {
   ...CommonWidgetPropsDefine,
   options: {
     type: Array as PropType<
@@ -100,7 +100,9 @@ type SelectWidgetDefine = DefineComponent<
   Record<string, unknown>
 >;
 export interface Theme {
-  SelectWidget: SelectWidgetDefine;
-  TextWidget: CommonWidgetDefine;
-  NumberWidget: CommonWidgetDefine;
+  widgets: {
+    SelectionWidget: SelectWidgetDefine;
+    TextWidget: CommonWidgetDefine;
+    NumberWidget: CommonFieldType;
+  };
 }

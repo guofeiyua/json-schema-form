@@ -1,7 +1,8 @@
-import { defineComponent } from "vue";
+import { defineComponent, watchEffect } from "vue";
 import { FiledPropsDefine, Schema } from "../types";
 import { useVJSFContext } from '../context'
-import SelectionWidge from '../widges/Selection'
+// import SelectionWidge from '../widges/Selection'
+import { getWidget } from "../theme";
 export default defineComponent({
   name: 'ArrayField',
   props: FiledPropsDefine,
@@ -14,8 +15,13 @@ export default defineComponent({
       arr[index] = v
       props.onChange(arr)
     }
-
+    const SelectionWidgetRef = getWidget('SelectionWidget')
+    
+    watchEffect(()=> {
+      console.log(SelectionWidgetRef, '----------');
+    })
     return () => {
+      const SelectionWidget = SelectionWidgetRef.value
       const { schema, rootSchema, value } = props
       const SchemaItem = context.SchemaItem
       const isMultiType = Array.isArray(schema.items)
@@ -34,7 +40,7 @@ export default defineComponent({
           key: e,
           value: e,
         }))
-        return <SelectionWidge value={value} onChange={props.onChange} options={options}></SelectionWidge>
+        return <SelectionWidget value={value} onChange={props.onChange} options={options}></SelectionWidget>
       }
     }
   }
