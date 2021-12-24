@@ -99,10 +99,17 @@ type SelectWidgetDefine = DefineComponent<
   Record<string, unknown>,
   Record<string, unknown>
 >;
+export enum SelectionWidgets {
+  SelectionWidget = "SelectionWidget",
+}
+export enum CommonWidgets {
+  TextWidget = "TextWidget",
+  NumberWidget = "NumberWidget",
+}
 export interface Theme {
   widgets: {
-    SelectionWidget: SelectWidgetDefine;
-    TextWidget: CommonWidgetDefine;
-    NumberWidget: CommonFieldType;
+    [SelectionWidgets.SelectionWidget]: SelectWidgetDefine;
+    [CommonWidgets.TextWidget]: CommonWidgetDefine;
+    [CommonWidgets.NumberWidget]: CommonWidgetDefine;
   };
 }

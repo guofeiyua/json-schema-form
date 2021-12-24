@@ -1,5 +1,5 @@
 import { defineComponent, watchEffect } from "vue";
-import { FiledPropsDefine, Schema } from "../types";
+import { FiledPropsDefine, Schema, SelectionWidgets } from "../types";
 import { useVJSFContext } from '../context'
 // import SelectionWidge from '../widges/Selection'
 import { getWidget } from "../theme";
@@ -15,7 +15,7 @@ export default defineComponent({
       arr[index] = v
       props.onChange(arr)
     }
-    const SelectionWidgetRef = getWidget('SelectionWidget')
+    const SelectionWidgetRef = getWidget(SelectionWidgets.SelectionWidget)
     
     watchEffect(()=> {
       console.log(SelectionWidgetRef, '----------');
